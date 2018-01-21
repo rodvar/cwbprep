@@ -1,12 +1,12 @@
 package com.rodvar.cwbprep
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        toolbarText = "Account Details"
+        layoutResId = R.layout.activity_main
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
     }
 }

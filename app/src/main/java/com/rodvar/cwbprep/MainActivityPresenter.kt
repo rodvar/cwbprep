@@ -1,10 +1,15 @@
 package com.rodvar.cwbprep
 
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.widget.TextView
 import com.rodvar.cwbprep.data.AccountDetailsRepository
 import com.rodvar.cwbprep.domain.AccountDetails
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+
+
 
 /**
  * Created by rodvar on 21/1/18.
@@ -12,6 +17,7 @@ import io.reactivex.schedulers.Schedulers
 class MainActivityPresenter {
 
     companion object {
+        const val PENDING_PREFIX = "PENDING: "
         const val NEGATIVE_SIGN = "-"
         const val DOLLAR_SIGN = "$"
     }
@@ -21,9 +27,6 @@ class MainActivityPresenter {
     private val transactionRepository : AccountDetailsRepository = AccountDetailsRepository()
 
     private var accountDetails: AccountDetails? = null
-
-    fun onCreate() {
-    }
 
     fun onViewCreated() {
         val all = transactionRepository.get()
@@ -62,17 +65,27 @@ class MainActivityPresenter {
     val transactionsSize: Int?
         get() = this.accountDetails?.transactionsSize()
 
-    fun onBindItem(holder: MainActivity.TransactionViewHolder?, position: Int) {
+    fun onBindItem(holder: MainActivity.TransactionViewHolder, position: Int) {
         val transactionsSortedByDescendingDate = this.accountDetails?.transactionsSortedByDescendingDate()
-        holder?.description?.text = transactionsSortedByDescendingDate?.get(position)?.description
-        val amount = transactionsSortedByDescendingDate?.get(position)?.amount
-        if (amount != null) {
-            if (amount.compareTo(0) >= 0)
-                holder?.amount?.text = DOLLAR_SIGN + amount
-            else
-                holder?.amount?.text = NEGATIVE_SIGN + DOLLAR_SIGN + Math.abs(amount)
-        }
+        val transaction = transactionsSortedByDescendingDate?.get(position)
 
+        holder.description.text = transaction?.description
+        if (transaction?.isPending()!!)
+            boldPending(holder.description)
+
+        val amount = transaction.amount
+        if (amount.compareTo(0) >= 0)
+            holder.amount.text = DOLLAR_SIGN + amount
+        else
+            holder.amount.text = NEGATIVE_SIGN + DOLLAR_SIGN + Math.abs(amount)
+
+    }
+
+    private fun boldPending(description: TextView) {
+        val theRest = description.text.toString()
+        val sb = SpannableStringBuilder(PENDING_PREFIX + theRest)
+        sb.setSpan(android.text.style.StyleSpan(android.graphics.Typeface.BOLD), 0, PENDING_PREFIX.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        description.text = sb
     }
 
     fun hasTransactions(): Boolean = when (this.transactionsSize) {

@@ -60,14 +60,14 @@ class MainActivity : BaseActivity() {
     }
 
     class TransactionViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var description: TextView? = view.description
-        var amount: TextView? = view.amount
+        var description: TextView = view.description
+        var amount: TextView = view.amount
     }
 
     private inner class TransactionListAdapter (val presenter: MainActivityPresenter) :
             RecyclerView.Adapter<TransactionViewHolder>() {
 
-        override fun onBindViewHolder(holder: TransactionViewHolder?, position: Int) {
+        override fun onBindViewHolder(holder: TransactionViewHolder, position: Int) {
             this.presenter.onBindItem(holder, position)
         }
 

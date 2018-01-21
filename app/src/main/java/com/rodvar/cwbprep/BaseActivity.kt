@@ -30,4 +30,6 @@ abstract class BaseActivity : AppCompatActivity() {
         my_toolbar.toolbar_text.text = this.toolbarText
 
     }
+
+    abstract fun refresh()
 }

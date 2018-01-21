@@ -44,6 +44,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun refresh() {
+        this.showProgress(false)
         this.account_name.text = this.mainActivityPresenter.accountName
         this.account_number.text = this.mainActivityPresenter.accountNumber
         this.avail_balance.text = this.mainActivityPresenter.accountBalance

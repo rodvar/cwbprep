@@ -3,6 +3,9 @@ package com.rodvar.cwbprep
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
+import android.view.View
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 
@@ -32,4 +35,15 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     abstract fun refresh()
+
+    fun showProgress(visible: Boolean) {
+        this.runOnUiThread({
+            if (visible)
+                this.progressBar?.visibility = View.VISIBLE
+            else
+                this.progressBar?.visibility = View.GONE
+            Log.d(javaClass.simpleName, "progress visibility: " + visible)
+        })
+
+    }
 }

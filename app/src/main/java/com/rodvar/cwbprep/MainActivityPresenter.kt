@@ -2,6 +2,7 @@ package com.rodvar.cwbprep
 
 import android.text.Spannable
 import android.text.SpannableStringBuilder
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.rodvar.cwbprep.data.AccountDetailsRepository
@@ -31,10 +32,14 @@ class MainActivityPresenter {
 
     fun onViewCreated() {
         val all = transactionRepository.get()
-        disposable = all.observeOn(AndroidSchedulers.mainThread())
-                .doOnNext { showProgress() }
-                .observeOn(Schedulers.io())
+        this.view?.showProgress(true)
+        disposable = all
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnError({
+                    this.view?.showProgress(false)
+                    Log.e(javaClass.simpleName, "error fetching data", it)
+                })
                 .subscribe {
                     this.accountDetails = it
                     this.view?.refresh()
@@ -45,10 +50,6 @@ class MainActivityPresenter {
         if (!disposable.isDisposed)
             disposable.dispose()
         this.view = null
-    }
-
-    private fun showProgress() {
-        // TODO
     }
 
     fun bind(mainActivity: BaseActivity) {

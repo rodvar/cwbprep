@@ -33,14 +33,14 @@ class AccountDetailsRepository : Repository<AccountDetails> {
         return Observable.create { emitter ->
             try {
                 val moshi = Moshi.Builder().build()
-                val jsonAdapter = moshi.adapter<AccountDetails>(AccountDetails::class.java!!)
+                val jsonAdapter = moshi.adapter<AccountDetails>(AccountDetails::class.java)
                 val jsonText = ResourceReader.loadJSONFromAsset("exercise.json")
-                System.out.println(jsonText)
                 val accountDetails = jsonAdapter.fromJson(jsonText)
                 if (accountDetails == null)
                     emitter.onError(IllegalArgumentException("Failed to load data"))
-                else
+                else {
                     emitter.onNext(accountDetails)
+                }
                 emitter.setCancellable {
                     // Cancel API call / DB read if not needed any more
                 }

@@ -12,6 +12,7 @@ import io.reactivex.schedulers.Schedulers
 class MainActivityPresenter {
 
     companion object {
+        const val NEGATIVE_SIGN = "-"
         const val DOLLAR_SIGN = "$"
     }
 
@@ -62,7 +63,16 @@ class MainActivityPresenter {
         get() = this.accountDetails?.transactionsSize()
 
     fun onBindItem(holder: MainActivity.TransactionViewHolder?, position: Int) {
-        // TODO BIND !
+        val transactionsSortedByDescendingDate = this.accountDetails?.transactionsSortedByDescendingDate()
+        holder?.description?.text = transactionsSortedByDescendingDate?.get(position)?.description
+        val amount = transactionsSortedByDescendingDate?.get(position)?.amount
+        if (amount != null) {
+            if (amount.compareTo(0) >= 0)
+                holder?.amount?.text = DOLLAR_SIGN + amount
+            else
+                holder?.amount?.text = NEGATIVE_SIGN + DOLLAR_SIGN + Math.abs(amount)
+        }
+
     }
 
     fun hasTransactions(): Boolean = when (this.transactionsSize) {

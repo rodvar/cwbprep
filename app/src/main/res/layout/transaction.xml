@@ -12,15 +12,18 @@
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:text="PENDING: telocontujavie"
-        android:textSize="20sp"
+        android:layout_alignBaseline="@+id/amount"
+        android:layout_alignBottom="@+id/amount"
         android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"/>
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_toLeftOf="@+id/amount"
+        android:text="PENDING: telocontujavie"
+        android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

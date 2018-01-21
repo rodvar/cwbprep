@@ -14,13 +14,21 @@ data class AccountDetails (
     var atms: List<Atm>? = null
 
 ) {
+
+    /**
+     * compiles all the transactions sorted by desc date
+     */
+    fun transactionsSortedByDescendingDate() : List<Transaction> {
+        val list = this.transactions?.toMutableList()
+        if (this.pending != null)
+            list?.addAll(this.pending!!)
+        if (list == null)
+            return listOf()
+        else
+            return list.sortedByDescending { it.effectiveDate }
+    }
+
     fun transactionsSize(): Int {
-        var transactionsSize = this.transactions?.size
-        var pendingsSize = this.pending?.size
-        if (transactionsSize == null)
-            transactionsSize = 0
-        if (pendingsSize == null)
-            pendingsSize = 0
-        return transactionsSize + pendingsSize
+        return transactionsSortedByDescendingDate().size
     }
 }

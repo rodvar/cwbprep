@@ -22,6 +22,9 @@ class MainActivityPresenter {
     private var accountDetails: AccountDetails? = null
 
     fun onCreate() {
+    }
+
+    fun onViewCreated() {
         val all = transactionRepository.get()
         disposable = all.observeOn(AndroidSchedulers.mainThread())
                 .doOnNext { showProgress() }
@@ -34,8 +37,8 @@ class MainActivityPresenter {
     }
 
     fun onDestroy() {
-        if (!disposable?.isDisposed)
-            disposable?.dispose()
+        if (!disposable.isDisposed)
+            disposable.dispose()
         this.view = null
     }
 
@@ -55,6 +58,17 @@ class MainActivityPresenter {
         get() = DOLLAR_SIGN + this.accountDetails?.account?.balance?.toString()
     val accountFunds: String?
         get() = DOLLAR_SIGN + this.accountDetails?.account?.available?.toString()
+    val transactionsSize: Int?
+        get() = this.accountDetails?.transactionsSize()
+
+    fun onBindItem(holder: MainActivity.TransactionViewHolder?, position: Int) {
+        // TODO BIND !
+    }
+
+    fun hasTransactions(): Boolean = when (this.transactionsSize) {
+        null -> false
+        else -> this.transactionsSize!! > 0
+    }
 
 
 }

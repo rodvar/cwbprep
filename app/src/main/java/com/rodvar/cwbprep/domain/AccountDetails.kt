@@ -13,4 +13,14 @@ data class AccountDetails (
     @Json(name = "atms")
     var atms: List<Atm>? = null
 
-)
+) {
+    fun transactionsSize(): Int {
+        var transactionsSize = this.transactions?.size
+        var pendingsSize = this.pending?.size
+        if (transactionsSize == null)
+            transactionsSize = 0
+        if (pendingsSize == null)
+            pendingsSize = 0
+        return transactionsSize + pendingsSize
+    }
+}

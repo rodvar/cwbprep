@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.account_details.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -62,6 +63,7 @@ class MainActivity : BaseActivity() {
     class TransactionViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var description: TextView = view.description
         var amount: TextView = view.amount
+        var localizable: ImageView = view.locationable
     }
 
     private inner class TransactionListAdapter (val presenter: MainActivityPresenter) :

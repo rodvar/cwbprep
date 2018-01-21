@@ -2,6 +2,7 @@ package com.rodvar.cwbprep
 
 import android.text.Spannable
 import android.text.SpannableStringBuilder
+import android.view.View
 import android.widget.TextView
 import com.rodvar.cwbprep.data.AccountDetailsRepository
 import com.rodvar.cwbprep.domain.AccountDetails
@@ -72,6 +73,9 @@ class MainActivityPresenter {
         holder.description.text = transaction?.description
         if (transaction?.isPending()!!)
             boldPending(holder.description)
+
+        if (transaction.isWithdrawal())
+            holder.localizable.visibility = View.VISIBLE
 
         val amount = transaction.amount
         if (amount.compareTo(0) >= 0)

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="5dp"
+    android:paddingBottom="2dp"
     android:background="@color/White">
 
     <RelativeLayout
@@ -38,7 +38,7 @@
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="15dp"
         android:paddingLeft="5dp"

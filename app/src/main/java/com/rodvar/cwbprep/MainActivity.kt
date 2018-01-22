@@ -11,7 +11,6 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.account_details.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.transaction.view.*
-import org.w3c.dom.Text
 
 class MainActivity : BaseActivity() {
 

@@ -1,0 +1,20 @@
+Version 0.1
+
+Feature list:
+
+* show a list of transactions corresponding to an account (Android.Transactions.png)
+* Example data has been included (exercise.json)
+* On this screen, ensure that the account information on top scrolls off the screen (Android.Transactions.Scrolling.png)
+* transactions (both cleared and pending) should be shown in a combined list, by descending date order
+
+* Group transactions by date
+* Some transactions will be ATM withdrawals. These rows should be indicated by the location icon.
+* Dynamically pull down data from https://www.dropbox.com/s/tewg9b71x0wrou9/data.json?dl=1
+
+Assumptions:
+
+ - This exercise is looking for a simple solution that can meet the requirements, not architectures supposing scalability
+ - The test was think to be done in 3 hours, therefore not a big focus on testing architecture is required (can be done upon request)
+ - for "location icon" the provided asset marker_atm_commbank can be used
+ - the prefix text "Wdl" on a transaction description indicates it's a withdrawal.
+

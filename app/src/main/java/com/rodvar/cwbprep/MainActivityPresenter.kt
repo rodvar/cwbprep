@@ -7,10 +7,12 @@ import android.view.View
 import android.widget.TextView
 import com.rodvar.cwbprep.data.AccountDetailsRepository
 import com.rodvar.cwbprep.domain.AccountDetails
+import com.rodvar.cwbprep.domain.Transaction
+import com.rodvar.cwbprep.util.DateUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-
+import java.util.*
 
 
 /**
@@ -84,6 +86,19 @@ class MainActivityPresenter {
         else
             holder.amount.text = NEGATIVE_SIGN + DOLLAR_SIGN + Math.abs(amount)
 
+        if (transaction.effectiveDate != null ) {
+            holder.date.text = DateUtil.formatDate(transaction.effectiveDate!!)
+
+            if (position == 0 || dateChanged(transactionsSortedByDescendingDate, position, transaction))
+                holder.header.visibility = View.VISIBLE
+            else
+                holder.header.visibility = View.GONE
+        }
+
+    }
+
+    private fun dateChanged(transactionsSortedByDescendingDate: List<Transaction>?, position: Int, transaction: Transaction) : Boolean {
+        return transactionsSortedByDescendingDate?.get(position - 1)?.effectiveDate?.compareTo(transaction.effectiveDate!!) != 0
     }
 
     private fun boldPending(description: TextView) {

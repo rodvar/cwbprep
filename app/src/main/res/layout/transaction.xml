@@ -1,48 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout android:id="@+id/container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="180dp"
-    android:paddingTop="10dp"
-    android:paddingBottom="15dp"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:background="@color/LightGrey">
+    android:layout_height="wrap_content"
+    android:paddingBottom="5dp"
+    android:background="@color/White">
 
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/amount"
-        android:layout_alignBottom="@+id/amount"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_toLeftOf="@+id/locationable"
-        android:text="PENDING: telocontujavie"
-        android:textSize="20sp" />
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/Yellow"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="07 JAN 2017"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/Black"/>
+        <TextView
+            android:id="@+id/time_gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Today"
+            android:layout_alignParentRight="true"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/Black"
+            android:visibility="gone"/>
+    </RelativeLayout>
 
-    <ImageView android:id="@+id/locationable"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/marker_atm_commbank"
-        android:layout_toLeftOf="@+id/amount"
-        android:layout_marginRight="5dp"
-        android:visibility="gone"
-        android:layout_centerVertical="true"
-        />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:background="@color/LightGrey"
+        android:layout_below="@+id/header">
 
-    <TextView
-        android:id="@+id/amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="-$3.50"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        />
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/amount"
+            android:layout_alignBottom="@+id/amount"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_toLeftOf="@+id/locationable"
+            android:text="PENDING: telocontujavie"
+            android:textSize="20sp" />
 
+        <ImageView android:id="@+id/locationable"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/marker_atm_commbank"
+            android:layout_toLeftOf="@+id/amount"
+            android:layout_marginRight="5dp"
+            android:visibility="gone"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:text="-$3.50"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
 </RelativeLayout>

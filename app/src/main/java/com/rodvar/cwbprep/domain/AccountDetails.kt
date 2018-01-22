@@ -1,5 +1,6 @@
 package com.rodvar.cwbprep.domain
 
+import com.rodvar.cwbprep.util.DateUtil
 import com.squareup.moshi.Json
 
 data class AccountDetails (
@@ -25,7 +26,7 @@ data class AccountDetails (
         if (list == null)
             return listOf()
         else
-            return list.sortedByDescending { it.effectiveDate }
+            return list.sortedByDescending { DateUtil.parseDateString(it.effectiveDate!!) }
     }
 
     fun transactionsSize(): Int {

@@ -65,6 +65,8 @@ class MainActivity : BaseActivity() {
         var description: TextView = view.description
         var amount: TextView = view.amount
         var localizable: ImageView = view.locationable
+        var date: TextView = view.date
+        var header: ViewGroup = view.header
     }
 
     private inner class TransactionListAdapter (val presenter: MainActivityPresenter) :
